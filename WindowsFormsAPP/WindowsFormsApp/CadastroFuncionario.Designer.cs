@@ -52,7 +52,7 @@
             this.labelCPF = new System.Windows.Forms.Label();
             this.btnOrdenar = new System.Windows.Forms.Button();
             this.Cargo = new System.Windows.Forms.Label();
-            this.tbCargo = new System.Windows.Forms.TextBox();
+            this.cbCargo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelNome
@@ -258,18 +258,23 @@
             // Cargo
             // 
             this.Cargo.AutoSize = true;
-            this.Cargo.Location = new System.Drawing.Point(36, 144);
+            this.Cargo.Location = new System.Drawing.Point(304, 47);
             this.Cargo.Name = "Cargo";
             this.Cargo.Size = new System.Drawing.Size(35, 13);
             this.Cargo.TabIndex = 18;
             this.Cargo.Text = "Cargo";
             // 
-            // tbCargo
+            // cbCargo
             // 
-            this.tbCargo.Location = new System.Drawing.Point(85, 141);
-            this.tbCargo.Name = "tbCargo";
-            this.tbCargo.Size = new System.Drawing.Size(100, 20);
-            this.tbCargo.TabIndex = 19;
+            this.cbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCargo.FormattingEnabled = true;
+            this.cbCargo.Items.AddRange(new object[] {
+            "Funcionario Comun",
+            "Gerente"});
+            this.cbCargo.Location = new System.Drawing.Point(345, 47);
+            this.cbCargo.Name = "cbCargo";
+            this.cbCargo.Size = new System.Drawing.Size(121, 21);
+            this.cbCargo.TabIndex = 19;
             // 
             // CadastroFuncionario
             // 
@@ -277,7 +282,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(505, 369);
-            this.Controls.Add(this.tbCargo);
+            this.Controls.Add(this.cbCargo);
             this.Controls.Add(this.Cargo);
             this.Controls.Add(this.btnOrdenar);
             this.Controls.Add(this.labelCPF);
@@ -332,7 +337,7 @@
         private System.Windows.Forms.ColumnHeader Cpf;
         private System.Windows.Forms.Button btnOrdenar;
         private System.Windows.Forms.Label Cargo;
-        private System.Windows.Forms.TextBox tbCargo;
+        private System.Windows.Forms.ComboBox cbCargo;
     }
 }
 

@@ -8,33 +8,36 @@ namespace WindowsFormsApp
 {
     public class ListaFuncionario
     {
-        // Atributo da classe ListaFuncionario: Funcionarios
-        // Funcionarios = lista de objetos Funcionario
         List<Funcionario> Funcionarios = new List<Funcionario>();
         
-        // Metodo Procedure (sem retorno)
-        // Que irá inserir um unico objeto Funcionario dentro da lista de objetos Funcionarios
         public void ArmazenarFuncionario(string nome, float salario, float desconto,
                                          float adicional, string cpf, bool semDesconto, string cargo)
         {
-            // Cada item (indice) da lista é um objeto Funcionario que contem nome, cpf, salario, desconto
-            Funcionario funcionarioObj = new Funcionario(nome, salario, desconto, adicional, cpf);
-            
-
-            // dependendo do valor da variavel semDesconto
-            // executa versões diferentes da CalcularLiquido (conceito de sobrecarga)
-            if (semDesconto)
-                funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.adicional);
-            else
-                funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.desconto, funcionarioObj.adicional);
-
+           
             if (cargo == "Gerente") 
             {
-                Gerente gerenteObj = new Gerente(); 
+                Gerente gerenteObj = new Gerente();
+
+                if (semDesconto)
+                    gerenteObj.CalcularLiquido(gerenteObj.salarioBruto, gerenteObj.adicional);
+                else
+                    gerenteObj.CalcularLiquido(gerenteObj.salarioBruto, gerenteObj.desconto, gerenteObj.adicional);
+
+                Funcionarios.Add(gerenteObj);
+            }
+            else
+            {
+                Funcionario funcionarioObj = new Funcionario(nome, salario, desconto, adicional, cpf, cargo);
+
+                if (semDesconto)
+                    funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.adicional);
+                else
+                    funcionarioObj.CalcularLiquido(funcionarioObj.salarioBruto, funcionarioObj.desconto, funcionarioObj.adicional);
+
+                Funcionarios.Add(funcionarioObj);
             }
 
-            // Função add é herdada da list
-            Funcionarios.Add(funcionarioObj);
+         
 
 
 

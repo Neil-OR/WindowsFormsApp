@@ -8,7 +8,7 @@ namespace WindowsFormsApp
 {
     public class Gerente: Funcionario 
     {
-         public override void CalcularBonus()
+         public new void CalcularBonus()
         {
             this.salarioLiquido = ((this.salarioLiquido * 2) / 100);
         }
