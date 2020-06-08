@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0A1DEA1B-A3BC-419A-B5C5-9B3142280C13}</ProjectGuid>
+    <ProjectGuid>{CEEFD8CF-C553-42F8-BE51-7E603DEFE692}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WindowsFormsApp</RootNamespace>
-    <AssemblyName>WindowsFormsApp</AssemblyName>
+    <RootNamespace>AppForms</RootNamespace>
+    <AssemblyName>AppForms</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppFormsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppFormsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroAgenda.Designer.cs">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroFuncionario.Designer.cs">
+      <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntitiesAgenda\Agenda.cs" />
+    <Compile Include="EntitiesAgenda\DomainException.cs" />
+    <Compile Include="EntitiesAgenda\Pessoa.cs" />
+    <Compile Include="Funcionario.cs" />
     <Compile Include="Gerente.cs" />
     <Compile Include="ListaFuncionario.cs" />
     <Compile Include="Principal.cs">
@@ -54,20 +75,16 @@
     <Compile Include="Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Funcionario.cs" />
-    <Compile Include="CadastroFuncionario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CadastroFuncionario.Designer.cs">
-      <DependentUpon>CadastroFuncionario.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Principal.resx">
-      <DependentUpon>Principal.cs</DependentUpon>
+    <EmbeddedResource Include="CadastroAgenda.resx">
+      <DependentUpon>CadastroAgenda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroFuncionario.resx">
       <DependentUpon>CadastroFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,6 +95,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="AppFormsDataSet.xsc">
+      <DependentUpon>AppFormsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AppFormsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AppFormsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AppFormsDataSet.xss">
+      <DependentUpon>AppFormsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
