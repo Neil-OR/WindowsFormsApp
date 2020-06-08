@@ -164,6 +164,7 @@
             this.LVCasdastroAgenda.TabIndex = 8;
             this.LVCasdastroAgenda.UseCompatibleStateImageBehavior = false;
             this.LVCasdastroAgenda.View = System.Windows.Forms.View.Details;
+            this.LVCasdastroAgenda.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.LVCasdastroAgenda_ColumnClick);
             // 
             // CHNome
             // 
@@ -203,6 +204,7 @@
             this.BtnEditar.TabIndex = 10;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnSalvar
             // 
@@ -222,6 +224,7 @@
             this.BtnExcluir.TabIndex = 12;
             this.BtnExcluir.Text = "Excluir";
             this.BtnExcluir.UseVisualStyleBackColor = true;
+            this.BtnExcluir.Click += new System.EventHandler(this.BtnExcluir_Click);
             // 
             // CadastroAgenda
             // 

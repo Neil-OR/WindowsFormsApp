@@ -116,5 +116,35 @@ namespace AppForms
                 }
             }
         }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            if (LVCasdastroAgenda.SelectedItems.Count > 0)
+            {
+                ListViewItem item = LVCasdastroAgenda.SelectedItems[0];
+                TBNome.Text = item.SubItems[0].Text;
+                TBEndereco.Text = item.SubItems[1].Text;
+                TBTelefone.Text = item.SubItems[2].Text;
+                TBEmail.Text = item.SubItems[3].Text;
+            }
+
+        }
+
+        private void BtnExcluir_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = LVCasdastroAgenda.SelectedItems[0];
+            int index = LVCasdastroAgenda.Items.IndexOf(item);
+
+            LVCasdastroAgenda.SelectedItems[0].SubItems.Clear();
+            agenda.Remover(index);
+
+            LVCasdastroAgenda.SelectedItems[0].Selected = false;
+        }
+
+        private void LVCasdastroAgenda_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+
+        }
+    }
     }
 }
