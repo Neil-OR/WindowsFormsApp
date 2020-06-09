@@ -32,6 +32,24 @@ namespace AppForms
         { 
             this.funcionarioTableAdapter.Fill(this.appFormsDataSet.Funcionario);
 
+            List<Pessoa> pessoaRegistro = ManipulaAgenda.Manipulação.SelecionarRegistro();
+
+            for (int indice = 0; indice < pessoaRegistro.Count; indice++) {
+                ListViewItem item = new ListViewItem(new[] { pessoaRegistro[indice].Nome,
+                                                             pessoaRegistro[indice].Endereco,
+                                                             pessoaRegistro[indice].Telefone,
+                                                             pessoaRegistro[indice].Email});
+                LVCasdastroAgenda.Items.Add(item);
+
+                agenda.Armazenar(pessoaRegistro[indice].Nome,
+                                 pessoaRegistro[indice].Endereco,
+                                 pessoaRegistro[indice].Telefone,
+                                 pessoaRegistro[indice].Email)
+            }
+
+            
+
+
         }
 
         private void BtnNovo_Click(object sender, EventArgs e)
@@ -61,6 +79,11 @@ namespace AppForms
                 LVCasdastroAgenda.SelectedItems[0].SubItems[3].Text = pessoa.Email;
 
                 var pessoaObj = agenda.RetornarPessoa(index);
+
+                ManipulaAgenda.Manipulação.AtualizarRegistro(TBNome.Text,
+                                        TBEndereco.Text,
+                                        TBTelefone.Text,
+                                        TBEmail.Text);
             }
             else
             {
@@ -69,33 +92,17 @@ namespace AppForms
                                  TBTelefone.Text,
                                  TBEmail.Text);
 
-                int index = agenda.BuscarPessoa(TBNome.Text);
-                var pessoaObj = agenda.RetornarPessoa(index);
-
                 ListViewItem item = new ListViewItem(new[] { TBNome.Text,
                                                              TBEndereco.Text,
                                                              TBTelefone.Text,
                                                              TBEmail.Text });
                 LVCasdastroAgenda.Items.Add(item);
 
-                try
-                {
-                    funcionarioTableAdapter.Insert(pessoaObj.Nome,
-                                                   "Não Especificado",
-                                                   "Não Especificado",
-                                                   0,
-                                                   0,
-                                                   0,
-                                                   0,
-                                                   pessoaObj.Endereco, 
-                                                   pessoaObj.Telefone, 
-                                                   pessoaObj.Email);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show($"Erro ao salvar registro na tabela Funcionario.");
-                }
-            }
+                ManipulaAgenda.Manipulação.InserirRegitro(TBNome.Text,
+                                                          TBEndereco.Text,
+                                                          TBTelefone.Text,
+                                                          TBEmail.Text);
+;            }
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
@@ -116,10 +123,14 @@ namespace AppForms
             ListViewItem item = LVCasdastroAgenda.SelectedItems[0];
             int index = LVCasdastroAgenda.Items.IndexOf(item);
 
+            string nomeRegistro = LVCasdastroAgenda.SelectedItems[0].SubItems[0].Text;
+
             LVCasdastroAgenda.SelectedItems[0].SubItems.Clear();
             agenda.Remover(index);
 
             LVCasdastroAgenda.SelectedItems[0].Selected = false;
+
+            ManipulaAgenda.Manipulação.DeletarRegistro(nomeRegistro);
         }
 
         private void LVCasdastroAgenda_ColumnClick(object sender, ColumnClickEventArgs e)

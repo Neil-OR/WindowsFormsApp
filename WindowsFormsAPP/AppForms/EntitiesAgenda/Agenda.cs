@@ -14,17 +14,16 @@ namespace AppForms.EntitiesAgenda
         public List<Pessoa> ListaAgenda { get => listaAgenda; set => listaAgenda = value; }
         public bool OrdemLista { get => ordemLista; set => ordemLista = value; }
 
-        public void Armazenar(string nome, string endereco,
-                              string telefone, string email)
+        public void Armazenar(string nome,
+                              string endereco,
+                              string telefone,
+                              string email)
         {
             Pessoa pessoa = new Pessoa(nome, endereco, telefone, email);
             ListaAgenda.Add(pessoa);
         }
 
-        public void Remover(int index)
-        {
-            ListaAgenda.RemoveAt(index);
-        }
+        public void Remover(int index) => ListaAgenda.RemoveAt(index);
 
         public void Ordenar()
         {
@@ -40,17 +39,12 @@ namespace AppForms.EntitiesAgenda
             }
         }
 
-        public int RetornarTamanhoLista()
-        {
-            return ListaAgenda.Count;
-        }
+        public int RetornarTamanhoLista() => ListaAgenda.Count;
 
-        public Pessoa RetornarPessoa(int index)
-        {
-            return ListaAgenda[index];
-        }
+        public Pessoa RetornarPessoa(int index) => ListaAgenda[index];
 
-        public void Editar(Pessoa pessoa, int index)
+        public void Editar(Pessoa pessoa,
+                           int index)
         {
             listaAgenda[index].Nome = pessoa.Nome;
             listaAgenda[index].Endereco = pessoa.Endereco;
@@ -58,7 +52,5 @@ namespace AppForms.EntitiesAgenda
             listaAgenda[index].Email = pessoa.Email;
 
         }
-
-        public int BuscarPessoa(string nome) => listaAgenda.FindIndex(p => p.Nome == nome);
     }
 }
