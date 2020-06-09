@@ -61,25 +61,6 @@ namespace AppForms
                 LVCasdastroAgenda.SelectedItems[0].SubItems[3].Text = pessoa.Email;
 
                 var pessoaObj = agenda.RetornarPessoa(index);
-
-                try
-                {
-                    funcionarioTableAdapter.Insert(pessoaObj.Nome,
-                                                   "Não Especificado",
-                                                   "Não Especificado",
-                                                   0,
-                                                   0,
-                                                   0,
-                                                   0,
-                                                   pessoaObj.Endereco,
-                                                   pessoaObj.Telefone,
-                                                   pessoaObj.Email);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show($"Erro ao salvar registro na tabela Funcionario.");
-                }
-
             }
             else
             {
@@ -143,8 +124,24 @@ namespace AppForms
 
         private void LVCasdastroAgenda_ColumnClick(object sender, ColumnClickEventArgs e)
         {
+            int coluna = e.Column;
 
+            if (coluna == 0)
+            {
+                agenda.Ordenar();
+                LVCasdastroAgenda.Items.Clear();
+                int tamanhoList = agenda.RetornarTamanhoLista();
+
+                for (int indice = 0; indice < tamanhoList; indice++)
+                {
+                    var pessoa = agenda.RetornarPessoa(indice);
+                    ListViewItem item = new ListViewItem(new[] { pessoa.Nome,
+                                                                 pessoa.Endereco,
+                                                                 pessoa.Telefone,
+                                                                 pessoa.Email });
+                    LVCasdastroAgenda.Items.Add(item);
+                }
+            }
         }
-    }
     }
 }
